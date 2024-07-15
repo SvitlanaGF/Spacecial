@@ -4,6 +4,7 @@ from django.views.generic import CreateView, DetailView, DeleteView
 from . import forms
 # Create your views here.
 
+
 class SignupView(CreateView):
     form_class = forms.UserCreateForm
     success_url = reverse_lazy('login')
