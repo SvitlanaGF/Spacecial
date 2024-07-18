@@ -9,7 +9,7 @@ User = get_user_model()
 
 
 class Post(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
+    username = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
     created = models.DateTimeField(auto_now_add=True)
     message = models.TextField()
     message_html = models.TextField(editable=False)
@@ -23,10 +23,10 @@ class Post(models.Model):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('posts:single', kwargs={'username': self.user.name, 'pk': self.pk})
+        return reverse('posts:single', kwargs={'username': self.username.name, 'pk': self.pk})
 
     class Meta:
         ordering = ['-created']
-        unique_together = ('user', 'message')
+        unique_together = ('username', 'message')
 
 
