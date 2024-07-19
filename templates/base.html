@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,21 +13,30 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <title>Spacecial</title>
+    <style>
+        body {
+  margin: 0;
+  overflow: hidden;
+  background-color: black;
+  color:white;
+}
+ </style>
 </head>
 <body>
+<div id="canvas_container">
 <nav class="navbar custom-nav" role="navigation" id="navbar">
     <div class="container">
-        <a href="{% url 'home' %}" class="navbar-brand custom-nav">Spacecial</a>
-        <ul class="nav navbar-nav navbar-right">
+        <a href="{% url 'home' %}" class="navbar-brand custom-nav" style="color: white" ><b>Spacecial</b></a>
+        <ul class="nav justify-content-end">
             {% if user.is_authenticated %}
-                <li><a href="#">Post</a></li>
-                <li><a href="#">Groups</a></li>
-                <li><a href="#">Create Group</a></li>
-                <li><a href="{% url 'accounts:logout' %}">Log Out</a></li>
+                <li class="nav-item"><a class="nav-link active"  style="color: white" href="{% url 'posts:create' %}">Post</a></li>
+                <li class="nav-item"><a class="nav-link active" style="color: white" href="{% url 'groups:all' %}">Groups</a></li>
+                <li class="nav-item"><a class="nav-link active" style="color: white" href="{% url 'groups:create' %}">Create Group</a></li>
+                <li class="nav-item"><a class="nav-link active" style="color: white" href="{% url 'accounts:logout' %}">Log Out</a></li>
             {% else %}
-                <li><a href="#">Groups</a></li>
-                <li><a href="{% url 'accounts:login' %}">Log In</a></li>
-                <li><a href="{% url 'accounts:signup' %}">Sign Up</a></li>
+                <li class="nav-item"><a class="nav-link active" style="color: white" href="{% url 'groups:create' %}">Groups</a></li>
+                <li class="nav-item"><a class="nav-link active" style="color: white" href="{% url 'accounts:login' %}">Log In</a></li>
+                <li class="nav-item"><a class="nav-link active" style="color: white" href="{% url 'accounts:signup' %}">Sign Up</a></li>
             {% endif %} 
         </ul>
     </div>
@@ -36,5 +46,9 @@
     {% endblock %}
 </div>
 
+</div>
+<script src="{% static 'SocialMediaClone/js/master.js' %}"></script>
 </body>
+
+{#<script type="text/javascript" src="{% static 'SocialMediaClone/js/master.js' %}"></script>#}
 </html>
